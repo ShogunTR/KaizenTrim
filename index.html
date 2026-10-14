@@ -3,48 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kaizen Trim</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Kaizen Trim: bulamadığınız otomobil ve motosiklet trim parçalarını 3D baskıyla, aracınıza özel üretiyoruz.">
+<title>Kaizen Trim · Automotive Parts</title>
+<meta name="description" content="Kaizen Trim: bulamadığınız tüm plastik araç parçalarını 3D baskıyla, aracınıza özel üretiyoruz.">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="icon" href="img/kt.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a workshop parts catalogue. Spec-sheet hero, filterable part grid, process strip, filament colour card. */
+/* Layout: the Kaizen Trim poster as a website. Carbon-black ground, blueprint cockpit hero, red accent, brushed-silver type. */
 :root {
-  --bg: #eceeec;
-  --surface: #f8f9f8;
-  --ink: #18201e;
-  --muted: #56615d;
-  --line: #c9cfcc;
-  --accent: #0d6b5a;
+  --bg: #0b0c0e;
+  --surface: #15171a;
+  --surface-2: #1c1f23;
+  --ink: #eceef0;
+  --muted: #9ba1a7;
+  --line: #2a2e33;
+  --accent: #e3171e;
   --accent-ink: #ffffff;
-  --signal: #e2a812;
-  --grid: rgba(13,107,90,.07);
+  --accent-glow: rgba(227,23,30,.45);
+  --silver: linear-gradient(180deg, #ffffff 0%, #d9dde1 45%, #9aa1a8 100%);
   --f-display: "Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #111615; --surface: #1a2120; --ink: #e6ebe9; --muted: #9aa6a2; --line: #2f3a37;
-    --accent: #3fb59c; --accent-ink: #0b1210; --signal: #f0bd3a; --grid: rgba(63,181,156,.07);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #111615; --surface: #1a2120; --ink: #e6ebe9; --muted: #9aa6a2; --line: #2f3a37;
-  --accent: #3fb59c; --accent-ink: #0b1210; --signal: #f0bd3a; --grid: rgba(63,181,156,.07);
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body {
-  margin: 0; background: var(--bg); color: var(--ink);
+  margin: 0; color: var(--ink);
   font-family: var(--f-body); font-size: 16px; line-height: 1.55;
+  background-color: var(--bg);
+  /* karbon fiber dokusu */
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,.022) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.022) 75%),
+    linear-gradient(45deg, rgba(255,255,255,.022) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.022) 75%);
+  background-size: 8px 8px; background-position: 0 0, 4px 4px;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -54,17 +51,19 @@ h1, h2, h3 { font-family: var(--f-display); font-weight: 800; line-height: 1.02;
 h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
 .eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
 .lead { color: var(--muted); max-width: 60ch; margin: 0; }
+.red { color: var(--accent); }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; gap: .5rem; font: 600 .95rem/1 var(--f-body); padding: .85rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; transition: background .15s, color .15s; }
-.btn:hover { background: var(--ink); color: var(--bg); }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.btn-primary:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.btn { display: inline-flex; align-items: center; gap: .5rem; font: 600 .95rem/1 var(--f-body); padding: .85rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1.5px solid #4a4f55; color: var(--ink); background: rgba(255,255,255,.03); cursor: pointer; transition: background .15s, border-color .15s, box-shadow .15s; }
+.btn:hover { border-color: var(--ink); background: rgba(255,255,255,.08); }
+.btn-primary { background: linear-gradient(180deg, #f0262d, #b80f15); border-color: #f0262d; color: var(--accent-ink); box-shadow: 0 0 18px var(--accent-glow); }
+.btn-primary:hover { background: linear-gradient(180deg, #ff3b42, #c9141a); border-color: #ff3b42; box-shadow: 0 0 26px var(--accent-glow); }
 
 /* Header */
-.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
-.logo { display: flex; align-items: baseline; gap: .35rem; text-decoration: none; font-family: var(--f-display); font-weight: 800; font-size: 1.55rem; letter-spacing: .04em; text-transform: uppercase; }
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(11,12,14,.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .6rem; }
+.logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--f-display); font-weight: 800; font-size: 1.45rem; letter-spacing: .06em; text-transform: uppercase; }
+.logo img { height: 34px; width: auto; border-radius: 3px; }
 .logo span { color: var(--accent); }
 .nav { display: flex; gap: 1.4rem; align-items: center; }
 .nav a { text-decoration: none; font-size: .92rem; color: var(--muted); }
@@ -72,28 +71,43 @@ h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
 .nav .btn { padding: .6rem .9rem; font-size: .88rem; color: var(--accent-ink); }
 @media (max-width: 760px) { .nav a:not(.btn) { display: none; } }
 
-/* Hero */
-.hero { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; border-bottom: 1px solid var(--line); }
-.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem); }
-.hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.hero-text { display: grid; gap: 1.4rem; min-width: 0; }
-.hero-text .lead { font-size: 1.12rem; }
+/* Hero: blueprint arka plan */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("img/blueprint.jpg") center 35% / cover no-repeat; opacity: .8; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(11,12,14,.9) 0%, rgba(11,12,14,.35) 60%, rgba(11,12,14,.55) 100%),
+    linear-gradient(0deg, var(--bg) 0%, transparent 35%),
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px; }
+.hero .wrap { display: grid; gap: 2rem; padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem); }
+.hero-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 2rem; align-items: center; }
+.hero-text { display: grid; gap: 1.2rem; min-width: 0; }
+.hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.8rem); }
+.hero h1 .silver { background: var(--silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 .red { color: var(--accent); text-shadow: 0 0 24px var(--accent-glow); }
+.hero-text .lead { font-size: 1.1rem; color: #c4c9ce; }
 .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; }
-.spec { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; min-width: 0; }
-.spec figure { margin: 0; aspect-ratio: 4/3; background: var(--bg); position: relative; }
-.spec figure img { width: 100%; height: 100%; object-fit: cover; }
-.spec dl { margin: 0; display: grid; grid-template-columns: auto 1fr; font-family: var(--f-mono); font-size: .82rem; }
-.spec dt, .spec dd { margin: 0; padding: .55rem .9rem; border-top: 1px solid var(--line); }
-.spec dt { color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.spec dd { text-align: right; }
-.spec .tag { position: absolute; left: .7rem; top: .7rem; background: var(--signal); color: #18201e; font: 500 .72rem/1 var(--f-mono); letter-spacing: .08em; padding: .35rem .5rem; text-transform: uppercase; }
-@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+.brand-mark { min-width: 0; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-composite: intersect; }
+.brand-mark img { width: 100%; height: auto; }
+@media (max-width: 860px) { .hero-top { grid-template-columns: 1fr; } .brand-mark { max-width: 360px; order: -1; } }
+
+/* Kategori banner kartları */
+.cat-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.cat-card { position: relative; display: grid; gap: .35rem; align-content: end; min-height: 150px; padding: 1.2rem 1.3rem; text-align: left; cursor: pointer; color: var(--ink); font: inherit;
+  background: linear-gradient(160deg, rgba(28,31,35,.92), rgba(12,13,15,.92)); border: 1px solid #3a3f45; border-radius: 6px; overflow: hidden; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.cat-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--accent); box-shadow: 0 0 14px var(--accent-glow); }
+.cat-card:hover, .cat-card[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 28px rgba(227,23,30,.25); transform: translateY(-2px); }
+.cat-card .n { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+.cat-card .t { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1; text-transform: uppercase; background: var(--silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cat-card .d { font-size: .88rem; color: var(--muted); }
+.cat-card .go { position: absolute; right: 1.1rem; top: 1rem; font-family: var(--f-mono); font-size: .8rem; color: var(--accent); }
+@media (max-width: 700px) { .cat-cards { grid-template-columns: 1fr; } .cat-card { min-height: 0; } }
 
 /* Facts strip */
-.facts { border-bottom: 1px solid var(--line); }
+.facts { border-bottom: 1px solid var(--line); background: rgba(0,0,0,.35); }
 .facts .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-.fact { padding-block: 1.3rem; padding-right: 1rem; border-right: 1px solid var(--line); }
+.fact { padding-block: 1.2rem; padding-right: 1rem; border-right: 1px solid var(--line); }
 .fact:last-child { border-right: 0; }
 .fact + .fact { padding-left: 1.2rem; }
 .fact b { display: block; font-family: var(--f-display); font-size: 1.9rem; line-height: 1; font-weight: 700; }
@@ -112,41 +126,39 @@ section.block { scroll-margin-top: 4.5rem; padding-block: clamp(3rem, 7vw, 5.5re
 
 /* Catalogue */
 .tools { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1.5rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chip { font: 500 .85rem/1 var(--f-body); padding: .55rem .85rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.select { font: 400 .92rem var(--f-body); padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); max-width: 100%; min-width: 0; }
 .search { flex: 1 1 220px; min-width: 0; max-width: 340px; margin-left: auto; font: 400 .95rem var(--f-body); padding: .6rem .8rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); }
+.count { margin: 0 0 1rem; font: 500 .8rem/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
-.part { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .15s, transform .15s; }
+.part { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: border-color .15s, transform .15s; }
 .part:hover { border-color: var(--accent); transform: translateY(-2px); }
-.part .thumb { aspect-ratio: 1/1; background: var(--bg); position: relative; display: grid; place-items: center; overflow: hidden; }
-.part .thumb img { width: 100%; height: 100%; object-fit: cover; }
-.part .ph { font-family: var(--f-display); font-weight: 800; font-size: 2.6rem; color: var(--line); letter-spacing: .02em; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 16px 16px; width: 100%; height: 100%; display: grid; place-items: center; }
+.part .thumb { aspect-ratio: 1/1; background: #fff; position: relative; display: grid; place-items: center; overflow: hidden; }
+.part .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.part .ph { font-family: var(--f-display); font-weight: 800; font-size: 2.4rem; color: #3a3f45; letter-spacing: .02em; background: var(--surface-2); width: 100%; height: 100%; display: grid; place-items: center; }
 .part .body { padding: .9rem; display: grid; gap: .5rem; flex: 1; align-content: start; }
 .part .meta { display: flex; justify-content: space-between; font: 500 .72rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .part .meta .brand { color: var(--accent); }
 .part h3 { font-family: var(--f-body); text-transform: none; font-weight: 600; font-size: 1rem; line-height: 1.35; }
-.part .foot { padding: .75rem .9rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: .5rem; font-size: .85rem; }
+.part .foot { padding: .75rem .9rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: .5rem; font-size: .85rem; color: var(--muted); }
 .part .foot a { text-decoration: none; font-weight: 600; color: var(--accent); }
 .part .foot a:hover { text-decoration: underline; }
 .empty { color: var(--muted); padding: 2rem 0; }
-.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-.select { font: 400 .92rem var(--f-body); padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); max-width: 100%; min-width: 0; }
-.count { margin: 0 0 1rem; font: 500 .8rem/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
-.part { cursor: pointer; }
-.part .thumb img { object-fit: contain; background: #fff; }
+.more { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; color: var(--muted); font-size: .92rem; }
 
 /* Part detail */
-.sheet { border: 0; padding: 0; max-width: min(980px, calc(100vw - 32px)); width: 100%; max-height: calc(100dvh - 32px); border-radius: 8px; background: var(--surface); color: var(--ink); }
-.sheet::backdrop { background: rgba(10,14,13,.6); }
+.sheet { border: 1px solid var(--line); padding: 0; max-width: min(980px, calc(100vw - 32px)); width: 100%; max-height: calc(100dvh - 32px); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.sheet::backdrop { background: rgba(0,0,0,.72); }
 .sheet-in { display: grid; grid-template-columns: 1.1fr 1fr; }
 .gallery { background: #fff; display: grid; grid-template-rows: 1fr auto; min-width: 0; }
 .gallery .main { aspect-ratio: 1/1; display: grid; place-items: center; }
 .gallery .main img { width: 100%; height: 100%; object-fit: contain; }
-.thumbs { display: flex; gap: .4rem; padding: .6rem; overflow-x: auto; background: var(--bg); }
+.thumbs { display: flex; gap: .4rem; padding: .6rem; overflow-x: auto; background: var(--surface-2); }
 .thumbs button { flex: 0 0 64px; height: 64px; padding: 0; border: 2px solid transparent; border-radius: 4px; background: #fff; cursor: pointer; overflow: hidden; }
 .thumbs button[aria-current="true"] { border-color: var(--accent); }
 .thumbs img { width: 100%; height: 100%; object-fit: contain; }
-.thumbs small { display: none; }
 .info { padding: 1.5rem; display: grid; gap: 1rem; align-content: start; min-width: 0; }
 .info h3 { font-family: var(--f-body); text-transform: none; font-size: 1.35rem; font-weight: 600; line-height: 1.3; }
 .info dl { margin: 0; display: grid; grid-template-columns: auto 1fr; font-family: var(--f-mono); font-size: .8rem; }
@@ -154,30 +166,26 @@ section.block { scroll-margin-top: 4.5rem; padding-block: clamp(3rem, 7vw, 5.5re
 .info dt { color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-right: 1rem; }
 .info dd { text-align: right; overflow-wrap: anywhere; }
 .info p { margin: 0; color: var(--muted); font-size: .92rem; }
-.close { position: absolute; right: .6rem; top: .6rem; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.close { position: absolute; right: .6rem; top: .6rem; z-index: 1; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; }
 @media (max-width: 760px) { .sheet-in { grid-template-columns: 1fr; } .sheet { max-height: calc(100dvh - 16px); max-width: calc(100vw - 16px); } }
-.more { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; color: var(--muted); font-size: .92rem; }
 
-/* Categories */
-.cats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.cat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; display: grid; gap: .9rem; min-width: 0; }
+/* Brand lists */
+.cats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.cat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; display: grid; gap: .9rem; align-content: start; min-width: 0; }
 .cat h3 { font-size: 2rem; }
 .brands { display: flex; flex-wrap: wrap; gap: .4rem; }
-.brands button { font: inherit; cursor: pointer; background: transparent; }
+.brands button { font: inherit; font-size: .82rem; padding: .3rem .55rem; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); cursor: pointer; background: transparent; }
 .brands button:hover { border-color: var(--accent); color: var(--ink); }
-.brands span, .brands button { font-size: .82rem; padding: .3rem .55rem; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); }
-@media (max-width: 760px) { .cats { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cats { grid-template-columns: 1fr; } }
 
 /* Process */
-.process { background: var(--ink); color: var(--bg); }
-.process .eyebrow { color: var(--signal); }
-.process .lead { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+.process { background: rgba(0,0,0,.45); border-block: 1px solid var(--line); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; }
-.steps li { counter-increment: s; padding: 1.4rem 1.2rem 1.4rem 0; border-top: 2px solid var(--signal); display: grid; gap: .5rem; align-content: start; }
+.steps li { counter-increment: s; padding: 1.4rem 1.2rem 1.4rem 0; border-top: 2px solid var(--accent); display: grid; gap: .5rem; align-content: start; }
 .steps li + li { padding-left: 1.2rem; }
-.steps li::before { content: "0" counter(s); font-family: var(--f-mono); font-size: .8rem; color: var(--signal); }
+.steps li::before { content: "0" counter(s); font-family: var(--f-mono); font-size: .8rem; color: var(--accent); }
 .steps h3 { font-size: 1.5rem; }
-.steps p { margin: 0; font-size: .93rem; color: color-mix(in srgb, var(--bg) 75%, var(--ink)); }
+.steps p { margin: 0; font-size: .93rem; color: var(--muted); }
 @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; row-gap: 1.2rem; } .steps li:nth-child(3) { padding-left: 0; } }
 @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } .steps li { padding-left: 0 !important; } }
 
@@ -198,10 +206,11 @@ section.block { scroll-margin-top: 4.5rem; padding-block: clamp(3rem, 7vw, 5.5re
 .contact { border-top: 1px solid var(--line); }
 .contact .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center; }
 .contact h2 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
+.phone { display: flex; align-items: center; justify-content: center; gap: .8rem; padding: 1rem 1.2rem; border-radius: 10px; font-family: var(--f-display); font-weight: 800; font-size: clamp(1.8rem, 4.5vw, 2.6rem); letter-spacing: .02em; text-decoration: none; color: #fff; background: linear-gradient(180deg, #e3171e, #8e0b10); border: 1px solid #ff4a50; box-shadow: 0 0 28px var(--accent-glow); }
 .contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.4rem; display: grid; gap: 1rem; min-width: 0; }
 .contact-row { display: grid; gap: .2rem; }
 .contact-row small { font: 500 .72rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.contact-row strong { font-family: var(--f-mono); font-size: 1.15rem; font-weight: 500; user-select: all; overflow-wrap: anywhere; }
+.contact-row strong { font-family: var(--f-mono); font-size: 1.05rem; font-weight: 500; overflow-wrap: anywhere; }
 @media (max-width: 860px) { .contact .wrap { grid-template-columns: 1fr; } }
 
 footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
@@ -212,7 +221,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="#top">Kaizen<span>Trim</span></a>
+    <a class="logo" href="#top" lang="en"><img src="img/kt.jpg" alt="" width="68" height="34">Kaizen<span>Trim</span></a>
     <nav class="nav" aria-label="Ana menü">
       <a href="#parcalar">Parçalar</a>
       <a href="#nasil">Nasıl çalışır</a>
@@ -226,34 +235,29 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <div class="hero-text">
-        <span class="eyebrow">Otomobil &amp; motosiklet trim parçaları · 3D baskı</span>
-        <h1>Bulamadığın parçayı <em>biz üretiriz.</em></h1>
-        <p class="lead">Kırılan klips, kaybolan kapak, artık üretilmeyen gösterge çerçevesi. Aracının marka, model ve yılına göre parçayı 3D baskıyla yeniden üretip ücretsiz kargoyla gönderiyoruz.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://wa.me/905342084784?text=Merhaba%2C%20arad%C4%B1%C4%9F%C4%B1m%20bir%20par%C3%A7a%20var." target="_blank" rel="noopener">Parça iste</a>
-          <a class="btn" href="#parcalar">Parçalara göz at</a>
+      <div class="hero-top">
+        <div class="hero-text">
+          <span class="eyebrow"><span lang="en">Automotive parts</span> · 3D baskı · siparişe özel</span>
+          <h1><span class="silver">Bulamadığınız tüm</span> <span class="red">plastik araç parçalarını</span> <span class="silver">arayın, üretelim.</span></h1>
+          <p class="lead">Kırılan klips, kaybolan kapak, artık üretilmeyen gösterge çerçevesi. Aracınızın marka, model ve yılına göre parçayı 3D baskıyla yeniden üretip ücretsiz kargoyla gönderiyoruz.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://wa.me/905342084784?text=Merhaba%2C%20arad%C4%B1%C4%9F%C4%B1m%20bir%20par%C3%A7a%20var." target="_blank" rel="noopener">WhatsApp'tan parça iste</a>
+            <a class="btn" href="tel:+905342084784">0534 208 47 84</a>
+          </div>
         </div>
+        <div class="brand-mark"><img src="img/logo.jpg" alt="Kaizen Trim, Automotive Parts" width="850" height="440"></div>
       </div>
-      <article class="spec" aria-label="Örnek parça">
-        <figure>
-          <img src="https://cdn.shopier.app/pictures_large/KaizenTrim_7e0899f8-f8db-44b4-920f-42f2faf0d6fd.png" alt="Honda Africa Twin stator koruyucu, 3D baskı" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Honda',style:'font-family:var(--f-display);font-weight:800;font-size:3rem;color:var(--line);display:grid;place-items:center;height:100%;text-transform:uppercase'}))">
-          <span class="tag">Örnek iş</span>
-        </figure>
-        <dl>
-          <dt>Parça</dt><dd>Stator koruyucu</dd>
-          <dt>Araç</dt><dd>Honda Africa Twin</dd>
-          <dt>Üretim</dt><dd>Siparişe özel 3D baskı</dd>
-          <dt>Renk</dt><dd>17 seçenek</dd>
-          <dt>Kargo</dt><dd>Ücretsiz · 3 iş günü</dd>
-        </dl>
-      </article>
+      <div class="cat-cards" id="cat-cards" role="group" aria-label="Kategoriler">
+        <button type="button" class="cat-card" data-c="O"><span class="go">→</span><span class="n" id="n-O">Otomobil</span><span class="t">Otomobil</span><span class="d">Konsol, kapı, gösterge, klips ve kapaklar</span></button>
+        <button type="button" class="cat-card" data-c="M"><span class="go">→</span><span class="n" id="n-M">Motosiklet</span><span class="t">Motosiklet</span><span class="d">Grenaj, koruma, kapak ve gösterge parçaları</span></button>
+        <button type="button" class="cat-card" data-c="D"><span class="go">→</span><span class="n" id="n-D">Diğer</span><span class="t">Diğer</span><span class="d">Diğer markalar ve özel istekler</span></button>
+      </div>
     </div>
   </section>
 
   <section class="facts" aria-label="Öne çıkanlar">
     <div class="wrap">
-      <div class="fact"><b id="f-parts">4.220</b><span>parça modeli</span></div>
+      <div class="fact"><b id="f-parts">4.217</b><span>parça modeli</span></div>
       <div class="fact"><b id="f-brands">68</b><span>araç markası</span></div>
       <div class="fact"><b>17</b><span>filament rengi</span></div>
       <div class="fact"><b>0 TL</b><span>kargo, tüm siparişlerde</span></div>
@@ -290,13 +294,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="cats">
         <div class="cat">
           <span class="eyebrow">Kategori</span>
+          <h3>Otomobil</h3>
+          <div class="brands" id="brands-O"></div>
+        </div>
+        <div class="cat">
+          <span class="eyebrow">Kategori</span>
           <h3>Motosiklet</h3>
           <div class="brands" id="brands-M"></div>
         </div>
         <div class="cat">
           <span class="eyebrow">Kategori</span>
-          <h3>Otomobil</h3>
-          <div class="brands" id="brands-O"></div>
+          <h3>Diğer</h3>
+          <div class="brands" id="brands-D"></div>
         </div>
       </div>
     </div>
@@ -355,16 +364,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap">
       <div style="display:grid;gap:1rem;min-width:0">
         <span class="eyebrow">İletişim</span>
-        <h2>Aradığın parçayı bize yaz.</h2>
-        <p class="lead">Fiyat, uyumluluk ya da katalogda olmayan bir parça için en hızlı yol WhatsApp.</p>
+        <h2>Arayın, <span class="red">üretelim.</span></h2>
+        <p class="lead">Fiyat, uyumluluk ya da katalogda olmayan bir parça için bizi arayın ya da WhatsApp'tan yazın.</p>
+        <a class="phone" href="tel:+905342084784">0 534 208 47 84</a>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://wa.me/905342084784" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
           <a class="btn" href="https://www.shopier.com/KaizenTrim" target="_blank" rel="noopener">Shopier mağazası</a>
         </div>
       </div>
       <div class="contact-card">
-        <div class="contact-row"><small>WhatsApp / Telefon</small><strong>0534 208 47 84</strong></div>
+        <div class="contact-row"><small>Telefon / WhatsApp</small><strong>0534 208 47 84</strong></div>
         <div class="contact-row"><small>Mağaza</small><strong>shopier.com/KaizenTrim</strong></div>
+        <div class="contact-row"><small>Kargo</small><strong>Ücretsiz · 3 iş günü içinde</strong></div>
       </div>
     </div>
   </section>
@@ -398,7 +409,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Kaizen Trim · Araç trim parçaları, 3D baskı</span>
+    <span>© <span id="yr">2026</span> Kaizen Trim · <span lang="en">Automotive Parts</span></span>
     <span>Tüm siparişlerde ücretsiz kargo</span>
   </div>
 </footer>
@@ -407,7 +418,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 const WA = "905342084784";
 const ANGLES = ["on", "arka", "ust", "sol45", "sag45"];
 const ANGLE_NAMES = ["Ön", "Arka", "Üst", "Sol 45°", "Sağ 45°"];
-const CAT = { O: "Otomobil", M: "Motosiklet" };
+const CAT = { O: "Otomobil", M: "Motosiklet", D: "Diğer" };
+// Shopier'deki "Diğer Markalar" kategorisi (kategori_haritasi.csv)
+const OTHER = new Set(["BYD", "Bajaj", "Benelli", "Chery", "Chrysler", "Daewoo", "GMC", "Infiniti", "Isuzu", "Jaguar", "Jawa", "Kymco", "Lada", "Lambretta", "MG", "MV Agusta", "Proton", "Rover", "SYM", "SsangYong", "Togg", "Voge", "Zontes"]);
 const PAGE = 48;
 
 // parts.json yüklenemezse (ör. dosyayı doğrudan açınca) Shopier'deki örneklerle çalışır
@@ -423,7 +436,7 @@ const SAMPLE = [
   [51828498, "Yamaha XT250 koruma plakası", "Yamaha", "XT250", "6570bcea-f3dc-4eda-b9b9-662f6f71a2c9"],
   [51828490, "Yamaha XT600 2KF ön fren diski kapağı", "Yamaha", "XT600", "8a112b4f-cf33-424a-bc77-8e7efdb575ae"]
 ].map(([u, t, b, m, img], i) => ({
-  no: i + 1, k: "M", b, m, t, s: "ornek-" + u, img: [SHOPIER_IMG + img + ".png"], u
+  no: i + 1, k: "M", c: OTHER.has(b) ? "D" : "M", b, m, t, s: "ornek-" + u, img: [SHOPIER_IMG + img + ".png"], u
 }));
 
 const COLORS = [
@@ -444,7 +457,7 @@ const state = { k: "", b: "", m: "", q: "", shown: PAGE };
 // parts.json: { img: {key: prefix}, parts: [[no, k, marka, model, baslik, slug, repoKey, yol | [url...], shopierId], ...] }
 function expand(data) {
   return data.parts.map(([no, k, b, m, t, s, r, p, u]) => ({
-    no, k, b, m, t, s, u,
+    no, k, b, m, t, s, u, c: OTHER.has(b) ? "D" : k,
     img: Array.isArray(p) ? p : ANGLES.map(a => `${data.img[r]}${p}-${a}.png`)
   }));
 }
@@ -452,7 +465,7 @@ function expand(data) {
 function filtered() {
   const q = lc(state.q.trim());
   return PARTS.filter(p =>
-    (!state.k || p.k === state.k) && (!state.b || p.b === state.b) && (!state.m || p.m === state.m) &&
+    (!state.k || p.c === state.k) && (!state.b || p.b === state.b) && (!state.m || p.m === state.m) &&
     (!q || (p._q ||= lc(`${p.t} ${p.b} ${p.m} #${p.no}`)).includes(q)));
 }
 
@@ -463,7 +476,7 @@ function countBy(list, key) {
 }
 
 function fillSelects() {
-  const inCat = PARTS.filter(p => !state.k || p.k === state.k);
+  const inCat = PARTS.filter(p => !state.k || p.c === state.k);
   $("brand").innerHTML = `<option value="">Tüm markalar</option>` +
     countBy(inCat, "b").map(([b, n]) => `<option value="${esc(b)}"${b === state.b ? " selected" : ""}>${esc(b)} (${n})</option>`).join("");
   const models = state.b ? countBy(inCat.filter(p => p.b === state.b), "m").filter(([m]) => m) : [];
@@ -496,6 +509,7 @@ function update(patch) {
   if ("k" in patch) { state.b = ""; state.m = ""; }
   if ("b" in patch) state.m = "";
   $("chips").querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.k === state.k));
+  $("cat-cards").querySelectorAll(".cat-card").forEach(c => c.setAttribute("aria-pressed", c.dataset.c === state.k));
   fillSelects();
   render();
 }
@@ -530,8 +544,8 @@ function onHash() {
 }
 
 function brandLists() {
-  ["M", "O"].forEach(k => {
-    $("brands-" + k).innerHTML = countBy(PARTS.filter(p => p.k === k), "b")
+  ["O", "M", "D"].forEach(k => {
+    $("brands-" + k).innerHTML = countBy(PARTS.filter(p => p.c === k), "b")
       .map(([b, n]) => `<button type="button" data-k="${k}" data-b="${esc(b)}">${esc(b)} <small>${n}</small></button>`).join("");
   });
 }
@@ -540,7 +554,8 @@ function init(parts) {
   PARTS = parts;
   $("f-parts").textContent = fmt(PARTS.length);
   $("f-brands").textContent = new Set(PARTS.map(p => p.b)).size;
-  const cats = [["", "Tümü"], ...["O", "M"].filter(k => PARTS.some(p => p.k === k)).map(k => [k, CAT[k]])];
+  ["O", "M", "D"].forEach(k => { $("n-" + k).textContent = fmt(PARTS.filter(p => p.c === k).length) + " parça"; });
+  const cats = [["", "Tümü"], ...["O", "M", "D"].filter(k => PARTS.some(p => p.c === k)).map(k => [k, CAT[k]])];
   $("chips").innerHTML = cats.map(([k, n]) =>
     `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === state.k}">${n}</button>`).join("");
   brandLists();
@@ -550,6 +565,12 @@ function init(parts) {
 }
 
 $("chips").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) update({ k: c.dataset.k }); });
+$("cat-cards").addEventListener("click", e => {
+  const c = e.target.closest(".cat-card");
+  if (!c) return;
+  update({ k: c.dataset.c });
+  $("parcalar").scrollIntoView();
+});
 $("brand").addEventListener("change", e => update({ b: e.target.value }));
 $("model").addEventListener("change", e => update({ m: e.target.value }));
 $("q").addEventListener("input", e => update({ q: e.target.value }));
